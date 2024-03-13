@@ -1,8 +1,8 @@
 
 import { Layout } from 'antd'
-import AppContent from './components/AppContent'
-import AppHeader from './components/AppHeader'
-import AppSider from './components/AppSider'
+import AppContent from './components/layout/AppContent'
+import AppHeader from './components/layout/AppHeader'
+import AppSider from './components/layout/AppSider'
 
 
 

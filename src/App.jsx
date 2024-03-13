@@ -8,20 +8,29 @@ import { CryptoContextProvider } from './context/crypto-context'
 
 
 
-const App = () => (
+function App() {
 
-  <CryptoContextProvider>
-    <Layout>
-      <AppHeader />
+
+  return (
+    <CryptoContextProvider>
       <Layout>
-        <AppSider />
-        <AppContent />
+        <AppHeader />
+        <Layout >
+          <AppSider className='siderPC' />
+          <AppContent />
+        </Layout>
+        {/* <AppSider className='siderMob' /> */}
       </Layout>
-    </Layout>
-  </CryptoContextProvider>
+    </CryptoContextProvider>
+  )
+}
 
 
 
 
-)
+
+
+
+
+
 export default App

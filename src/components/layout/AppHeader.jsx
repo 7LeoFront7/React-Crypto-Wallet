@@ -14,7 +14,8 @@ const headerStyle = {
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
-	borderBottom: '1px solid #000'
+	borderBottom: '1px solid #000',
+	gap: 10
 }
 
 
@@ -60,7 +61,7 @@ export default function AppHeader() {
 			open={select}
 			onClick={() => setSelect((prev) => !prev)}
 			onSelect={handleSelect}
-			value='press / to open'
+			value='Press "/" to open'
 			options={crypto.map((coin) => ({
 				label: coin.name,
 				value: coin.id,
@@ -75,7 +76,7 @@ export default function AppHeader() {
 				</Space>
 			)}
 		/>
-		<Button onClick={showDrawer} type='primary'>Add Coin</Button>
+		<Button onClick={showDrawer} style={{ background: '#F4A900', fontWeight: 'bold', color: '#fff', width: 250 }}>Add Coin</Button>
 
 		<Modal footer={null} open={modal} onCancel={() => setModal(false)}>
 			<CoinInfoModal coin={coin} />

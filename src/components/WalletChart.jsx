@@ -29,7 +29,7 @@ export default function WalletChart() {
 	}
 
 	return (
-		<div style={{ display: 'flex', marginBottom: '1rem', justifyContent: 'center' }}>
+		<div style={{ display: 'flex', margin: 'auto 0', justifyContent: 'center', padding: '1rem' }}>
 			<Pie style={{ height: 500 }} options={{ maintainAspectRatio: false }} data={data} />
 		</div>
 	)

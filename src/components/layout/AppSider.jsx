@@ -12,7 +12,7 @@ export default function AppHeader() {
 	return (
 
 
-		<Layout.Sider width="30%" style={{ padding: '1rem', backgroundColor: '#efefef', overflowY: 'scroll', height: '100vh' }}>
+		<Layout.Sider width="25%" className='siderPC' style={{ padding: '1rem', backgroundColor: '#f1f1f1', overflowY: 'scroll', height: '100vh' }}>
 
 
 			<Spin style={{ display: loading ? 'block' : 'none', transition: 'all .3s', justifyContent: 'center', marginTop: '5rem' }}
@@ -21,7 +21,8 @@ export default function AppHeader() {
 			{wallet.map((myCoin) => (
 				<Card key={myCoin.coin} style={{ marginBottom: '1rem', boxShadow: '4px 4px 8px 0px rgba(34, 60, 80, 0.2)' }}>
 
-					<Statistic title={capitalize(myCoin.coin)}
+					<Statistic
+						title={<b style={{ color: '#F4A900' }}>{capitalize(myCoin.coin)}</b>}
 						value={myCoin.totalAmout}
 						precision={2}
 						valueStyle={{ color: myCoin.grow ? '#3f8600' : '#cf1322' }}

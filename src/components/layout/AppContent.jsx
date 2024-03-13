@@ -8,7 +8,8 @@ const contentStyle = {
 	minHeight: 'calc(100vh - 60px)',
 	lineHeight: '120px',
 	color: '#fff',
-	backgroundColor: '#222'
+	backgroundColor: '#1b1b1b'
+
 }
 
 export default function AppHeader() {

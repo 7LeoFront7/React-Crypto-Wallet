@@ -1,39 +1,13 @@
 import { ArrowDownOutlined, ArrowUpOutlined, LoadingOutlined } from '@ant-design/icons'
 import { Card, Layout, List, Spin, Statistic, Tag, Typography } from 'antd'
-import { useEffect, useState } from 'react'
-import { getDataAllCoins, getMyWallet } from '../../api'
-import { capitalize, percentDifference } from '../../utils'
+import { useContext } from 'react'
+import CryptoContext from '../../context/crypto-context'
+import { capitalize } from '../../utils'
 
 
 export default function AppHeader() {
 
-	const [loading, setLoading] = useState(false)
-	const [crypto, setCrypto] = useState([])
-	const [wallet, setWallet] = useState([])
-
-	useEffect(() => {
-		async function preload() {
-			setLoading(true)
-			const { result } = await getDataAllCoins()
-			const myWallet = await getMyWallet()
-			setCrypto(result)
-			setWallet(myWallet.map((myCoin) => {
-
-				const coin = result.find((c) => c.id === myCoin.coin)
-
-				return {
-					grow: myCoin.price < coin.price,
-					growPercent: percentDifference(myCoin.price, coin.price),
-					totalAmout: myCoin.amount * coin.price,
-					totalProfit: myCoin.amount * coin.price - myCoin.amount * myCoin.price,
-					...myCoin
-				}
-			}))
-			setLoading(false)
-		}
-		preload()
-	}, [])
-
+	const { loading, wallet } = useContext(CryptoContext)
 
 	return (
 

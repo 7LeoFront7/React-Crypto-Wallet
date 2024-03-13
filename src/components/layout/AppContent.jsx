@@ -5,7 +5,7 @@ const contentStyle = {
 	minHeight: 'calc(100vh - 60px)',
 	lineHeight: '120px',
 	color: '#fff',
-	backgroundColor: '#fff',
+	backgroundColor: '#2b2b2b',
 }
 
 export default function AppHeader() {

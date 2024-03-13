@@ -1,6 +1,10 @@
 import { Divider, Flex, Tag, Typography } from 'antd'
 
 export default function CoinInfoModal({ coin }) {
+
+
+
+
 	return (
 		<>
 			<Flex align='center'>

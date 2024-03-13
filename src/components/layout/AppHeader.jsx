@@ -80,8 +80,8 @@ export default function AppHeader() {
 			<CoinInfoModal coin={coin} />
 		</Modal>
 
-		<Drawer title="add Coin in Wallet" width={600} onClose={onClose} open={drawer}>
-			<AddCoinForm />
+		<Drawer destroyOnClose title="add Coin in Wallet" width={600} onClose={onClose} open={drawer}>
+			<AddCoinForm onClose={() => setDrawer(false)} />
 		</Drawer>
 	</Layout.Header>
 }

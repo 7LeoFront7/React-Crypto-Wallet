@@ -8,7 +8,24 @@ const CryptoContext = createContext({
 	loading: false
 })
 
+
+
 export function CryptoContextProvider({ children }) {
+
+	function mapWallet(wallet, result) {
+		return wallet.map((myCoin) => {
+			const coin = result.find((c) => c.name === myCoin.coin)
+
+			return {
+				grow: myCoin.price < coin.price,
+				growPercent: percentDifference(myCoin.price, coin.price),
+				totalAmout: myCoin.amount * coin.price,
+				totalProfit: myCoin.amount * coin.price - myCoin.amount * myCoin.price,
+				...myCoin
+			}
+		})
+
+	}
 
 	const [loading, setLoading] = useState(false)
 	const [crypto, setCrypto] = useState([])
@@ -19,41 +36,25 @@ export function CryptoContextProvider({ children }) {
 			setLoading(true)
 			const { result } = await getDataAllCoins()
 			const myWallet = await getMyWallet()
+			setWallet(mapWallet(myWallet, result))
 			setCrypto(result)
-			setWallet(myWallet.map((myCoin) => {
-
-				const coin = result.find((c) => c.id === myCoin.coin)
-
-				return {
-					grow: myCoin.price < coin.price,
-					growPercent: percentDifference(myCoin.price, coin.price),
-					totalAmout: myCoin.amount * coin.price,
-					totalProfit: myCoin.amount * coin.price - myCoin.amount * myCoin.price,
-					...myCoin
-				}
-			}))
 			setLoading(false)
 		}
 		preload()
 		setInterval(async () => {
+
 			const { result } = await getDataAllCoins()
 			const myWallet = await getMyWallet()
 			setCrypto(result)
-			setWallet(myWallet.map((myCoin) => {
-
-				const coin = result.find((c) => c.id === myCoin.coin)
-
-				return {
-					grow: myCoin.price < coin.price,
-					growPercent: percentDifference(myCoin.price, coin.price),
-					totalAmout: myCoin.amount * coin.price,
-					totalProfit: myCoin.amount * coin.price - myCoin.amount * myCoin.price,
-					...myCoin
-				}
-			}))
-		}, 2000)
+			setWallet(mapWallet(myWallet, result))
+		}, 10000)
 	}, [])
-	return <CryptoContext.Provider value={{ wallet, loading, crypto }}>{children}</CryptoContext.Provider>
+
+	function addCoinInWallet(newCoin) {
+		setWallet(prev => mapWallet([...prev, newCoin], crypto))
+	}
+
+	return <CryptoContext.Provider value={{ wallet, loading, crypto, addCoinInWallet }}>{children}</CryptoContext.Provider>
 }
 
 export default CryptoContext

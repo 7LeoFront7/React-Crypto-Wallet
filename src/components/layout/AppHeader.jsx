@@ -13,7 +13,8 @@ const headerStyle = {
 	background: '#fff',
 	display: 'flex',
 	justifyContent: 'space-between',
-	alignItems: 'center'
+	alignItems: 'center',
+	borderBottom: '1px solid #000'
 }
 
 

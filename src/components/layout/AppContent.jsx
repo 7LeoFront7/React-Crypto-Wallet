@@ -8,7 +8,7 @@ const contentStyle = {
 	minHeight: 'calc(100vh - 60px)',
 	lineHeight: '120px',
 	color: '#fff',
-	backgroundColor: '#222',
+	backgroundColor: '#222'
 }
 
 export default function AppHeader() {
@@ -20,13 +20,18 @@ export default function AppHeader() {
 	}, {})
 
 
-	return <Layout.Content style={contentStyle}>
-		<Typography.Title style={{ textAlign: 'right', color: '#fff', padding: '1rem' }} level={3}>wallet: {wallet.map(myCoin => {
+	return (
+		<Layout.Content style={contentStyle}>
+			<Typography.Title style={{ textAlign: 'right', color: '#fff', padding: '1rem' }} level={3}>wallet: {wallet.map(myCoin => {
 
-			return myCoin.amount * cryptoPriceMap[myCoin.coin]
-		}).reduce((acc, v) => acc += v, 0).toFixed(2)}$
-		</Typography.Title>
-		<WalletChart />
-		<WalletTable />
-	</Layout.Content>
+				return myCoin.amount * cryptoPriceMap[myCoin.coin]
+			}).reduce((acc, v) => acc += v, 0).toFixed(2)}$
+			</Typography.Title>
+			<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: 'calc(100vh - 60px)' }}>
+				<WalletChart />
+				<WalletTable />
+			</div>
+
+		</Layout.Content>
+	)
 }

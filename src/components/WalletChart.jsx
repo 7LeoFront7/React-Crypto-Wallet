@@ -8,7 +8,7 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 export default function WalletChart() {
 
 	const { wallet } = useCrypto()
-	console.log(wallet)
+
 	const data = {
 		labels: wallet.map((myCoin) => myCoin.coin),
 		datasets: [
@@ -29,8 +29,8 @@ export default function WalletChart() {
 	}
 
 	return (
-		<div style={{ display: 'flex', marginBottom: '1rem', justifyContent: 'center', height: 400 }}>
-			<Pie options={{ maintainAspectRatio: false }} data={data} />
+		<div style={{ display: 'flex', marginBottom: '1rem', justifyContent: 'center' }}>
+			<Pie style={{ height: 500 }} options={{ maintainAspectRatio: false }} data={data} />
 		</div>
 	)
 }
